@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Color Me</title>
+</head>
+
+<body class="bg-[#ccd5ae] text-white font-serif min-h-screen flex items-center justify-center">
+    <main class="max-w-xl w-full p-6 space-y-6">
+        <h1 class="text-3xl text-center font-bold bg-[#4a5759] p-1 rounded-lg"> HEX CODE TO RGB CONVERTER </h1>
+        <h1 class="text-2xl font-semibold text-center">🎨 COLOR ME 👇🏻</h1>
+
+        <div id="cbox" class="w-full h-[300px] rounded-xl border-4 border-white bg-white transition-all duration-300">
+        </div>
+
+        <div class="bg-[#faedcd] rounded-lg p-4 flex items-center shadow-md space-x-4">
+            <span class="text-black font-medium">#</span>
+            <input class="border-none outline-none w-full text-black text-lg bg-[#faedcd]" type="text" id="ccode"
+                onkeyup="checkval()" placeholder="Enter hex code " />
+            <button class="bg-[#d4a373] hover:bg-[#e29578] transition text-white font-semibold px-4 py-2 rounded-md"
+                onclick="changecolor()">Apply</button>
+        </div>
+
+        <div id="rgb"
+            class="bg-[#faedcd] text-black rounded-lg p-4 shadow-md grid grid-cols-3 gap-4 text-center font-semibold">
+            <p id="r">R : -</p>
+            <p id="g">G : -</p>
+            <p id="b">B : -</p>
+        </div>
+    </main>
+
+    <script>
+        function checkval() {
+            let ccode = document.getElementById('ccode').value;
+            let edited = ccode.replace('#', '');
+            document.getElementById('ccode').value = edited;
+        }
+
+        function changecolor() {
+            var ccode = document.getElementById("ccode").value;
+            document.getElementById('cbox').setAttribute('style', `background-color:#${ccode}`)
+            rgbcode();
+        }
+
+        function rgbcode() {
+            var r, g, b;
+            var ccode = document.getElementById("ccode").value;
+            if (ccode.length == 6) {
+                r = parseInt(ccode.slice(0, 2), 16);
+                g = parseInt(ccode.slice(2, 4), 16);
+                b = parseInt(ccode.slice(4, 6), 16);
+            }
+            document.getElementById("r").innerHTML = `R : ${r}`;
+            document.getElementById("g").innerHTML = `G : ${g}`;
+            document.getElementById("b").innerHTML = `B : ${b}`;
+        }
+    </script>
+</body>
+
+</html>
